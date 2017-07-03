@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>csvbfbf</title>
+</head>
+<style type="text/css" media="screen">
+#parent {width:400px; height:20px; background:#CCC; position:relative; margin:20px auto;}
+#div1 {width:20px; height:20px; background:#999; cursor:pointer; position:absolute;}
+#div2 {width:200px; height:300px; border:1px solid black; position:relative; overflow:hidden;}
+#div3 {position:absolute;}
+
+</style>
+<body>
+		<div id="parent">
+			<div id="div1">
+		    </div>
+		</div>
+
+		<div id="div2">
+			<div id="div3">
+			Just as our slogan implies, our business goal is to be the easiest PCB manufacturer for prototyping and low-volume production to work with in the world. With more than a decade in the field, we are committed to meeting the needs of our customers from different industries in terms of quality, delivery, cost-effectiveness and any other demanding requests. As one of the most experienced PCB manufacturers and SMT Assemblers in China, we pride ourselves to be your best business partners as well as good friends in every aspect of your PCB needs. We strive to make your R&D work easy and hassle-free.
+			Just as our slogan implies, our business goal is to be the easiest PCB manufacturer for prototyping and low-volume production to work with in the world. With more than a decade in the field, we are committed to meeting the needs of our customers from different industries in terms of quality, delivery, cost-effectiveness and any other demanding requests. As one of the most experienced PCB manufacturers and SMT Assemblers in China, we pride ourselves to be your best business partners as well as good friends in every aspect of your PCB needs. We strive to make your R&D work easy and hassle-free.
+			Just as our slogan implies, our business goal is to be the easiest PCB manufacturer for prototyping and low-volume production to work with in the world. With more than a decade in the field, we are committed to meeting the needs of our customers from different industries in terms of quality, delivery, cost-effectiveness and any other demanding requests. As one of the most experienced PCB manufacturers and SMT Assemblers in China, we pride ourselves to be your best business partners as well as good friends in every aspect of your PCB needs. We strive to make your R&D work easy and hassle-free.
+			Just as our slogan implies, our business goal is to be the easiest PCB manufacturer for prototyping and low-volume production to work with in the world. With more than a decade in the field, we are committed to meeting the needs of our customers from different industries in terms of quality, delivery, cost-effectiveness and any other demanding requests. As one of the most experienced PCB manufacturers and SMT Assemblers in China, we pride ourselves to be your best business partners as well as good friends in every aspect of your PCB needs. We strive to make your R&D work easy and hassle-free.
+		    </div>
+		</div>
+</body>
+</html>
+<script type="text/javascript" src='../jquery-1.11.1.js'></script>
+<script type="text/javascript">
+
+ function myAddEvent(obj,sEvent,fn){
+      if (obj.attachEvent) {
+          obj.attachEvent('on'+sEvent,fn)
+      } else {
+          obj.addEventListener(sEvent,fn,false);
+      }
+ }
+
+
+ window.onload=function(){
+ 	var oDiv = document.getElementById('div1');
+ 	var oParent = document.getElementById('parent');
+ 	var oDiv2 = document.getElementById('div2');
+ 	var oDiv3 = document.getElementById('div3');
+ 	function onMouseWheel(ev){
+ 		var oEvent = ev||event;
+ 		var bDown=true;
+ 		bDown=oEvent.wheelDelta?oEvent.wheelDelta<0:oEvent.detail>0;
+
+ 		if (bDown) {
+            setLeft(oDiv.offsetLeft+10);
+ 		} else {
+            setLeft(oDiv.offsetLeft-10);
+ 		}
+ 		if(oEvent.preventDefault){
+ 		   oEvent.preventDefault();
+ 		}
+ 		return false;
+ 	}
+myAddEvent(oParent,'mousewheel',onMouseWheel);
+myAddEvent(oParent,'DOMMouseScroll',onMouseWheel);
+myAddEvent(oDiv2,'mousewheel',onMouseWheel);
+myAddEvent(oDiv2,'DOMMouseScroll',onMouseWheel);
+
+ oDiv.onmousedown=function(ev){
+         var oEvent = ev||event;
+         var disX=oEvent.clientX-oDiv.offsetLeft;
+
+         document.onmousemove=function(ev){
+         	var oEvent = ev||event;
+         	var  l = oEvent.clientX-disX;
+         	setLeft(l);
+         }
+         document.onmouseup=function(){
+         	document.onmousemove=null;
+         	document.onmouseup=null;
+         }
+ 	  }
+
+function setLeft(l){
+ 	  	if (l<0) {
+           l=0;
+ 	  	} else if(l>oParent.offsetWidth-oDiv.offsetWidth){
+            l = oParent.offsetWidth-oDiv.offsetWidth;
+ 	  	}
+ 	  	oDiv.style.left=l+'px';
+
+ 	  	var scale = l/(oParent.offsetWidth-oDiv.offsetWidth);
+ 	  	oDiv3.style.top=-(oDiv3.offsetHeight-oDiv2.offsetHeight)*scale+'px';
+ 	  	// document.title=scale;
+ 	  }
+
+ }
+
+
+
+</script>
